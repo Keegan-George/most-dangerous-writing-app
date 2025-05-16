@@ -1,0 +1,13 @@
+WINDOW_RESOLUTION = "640x550"
+
+# durations in seconds
+SESSION_DURATION = 20
+CLEARING_DURATION = 5
+
+FONT = ("Arial", 12, "bold")
+
+# colour palette
+TEXTBOX_COLOUR = "#222831"
+WINDOW_COLOUR = "#393E46"
+LABEL_COLOUR = "#00ADB5"
+TEXT_COLOUR = "#EEEEEE"
