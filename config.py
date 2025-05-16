@@ -1,4 +1,8 @@
+TITLE = "Most Dangerous Writing App"
+
 WINDOW_RESOLUTION = "640x550"
+PADX = 20
+PADY = 10
 
 # durations in seconds
 SESSION_DURATION = 20
