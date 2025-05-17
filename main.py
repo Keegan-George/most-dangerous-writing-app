@@ -8,14 +8,13 @@ ui = DangerousWritingPromptUI(window)
 session_timer = SessionTimer(
     window, ui.update_session_timer, ui.disable_text_box, ui.display_times_up
 )
-clearing_timer = ClearingTimer(
-    window, ui.update_clearing_timer, ui.clear_textbox, ui.update_word_count
-)
+clearing_timer = ClearingTimer(window, ui.update_clearing_timer, ui.clear_textbox)
 
 
 def start_timers(_event=None):
     window.unbind("<Key>")
     window.bind("<Key>", clearing_timer.start)
+    window.bind("<space>", ui.update_word_count)
     session_timer.start()
     clearing_timer.start()
 

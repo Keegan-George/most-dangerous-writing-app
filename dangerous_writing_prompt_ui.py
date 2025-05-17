@@ -74,7 +74,7 @@ class DangerousWritingPromptUI:
         """
         self.times_up_label.config(text="Times Up!")
 
-    def update_word_count(self):
+    def update_word_count(self, _event=None):
         """
         Display the number of words typed.
         """

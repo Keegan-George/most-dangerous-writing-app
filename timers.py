@@ -61,8 +61,6 @@ class ClearingTimer:
         self.update_word_count_callback = update_word_count_callback
 
     def tick(self):
-        self.update_word_count_callback()
-
         if self.duration < 0:
             self.clearing_textbox_callback()
             self.root.after_cancel(self.after_id)
