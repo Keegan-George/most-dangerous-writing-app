@@ -1,14 +1,12 @@
 TITLE = "Most Dangerous Writing App"
-
 WINDOW_RESOLUTION = "640x550"
 PADX = 20
 PADY = 10
+FONT = ("Arial", 12, "bold")
 
 # durations in seconds
 SESSION_DURATION = 20
 CLEARING_DURATION = 5
-
-FONT = ("Arial", 12, "bold")
 
 # colour palette
 TEXTBOX_COLOUR = "#222831"

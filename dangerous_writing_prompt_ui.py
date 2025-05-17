@@ -45,3 +45,44 @@ class DangerousWritingPromptUI:
             text=f"Word count: 0", font=FONT, bg=WINDOW_COLOUR, fg=LABEL_COLOUR
         )
         self.word_count_label.grid(row=3, column=0, columnspan=2)
+
+    def update_session_timer(self, minutes: int, seconds: int):
+        """
+        Update the session timer display.
+        """
+        self.session_timer_label.config(
+            text=f"Session timer: {minutes:02d}:{seconds:02d}"
+        )
+
+    def update_clearing_timer(self, minutes: int, seconds: int):
+        """
+        Update the clearing timer display.
+        """
+        self.clearing_timer_label.config(
+            text=f"Clearing timer: {minutes:02d}:{seconds:02d}"
+        )
+
+    def disable_text_box(self):
+        """
+        Disable the input textbox.
+        """
+        self.textbox.config(state="disabled")
+
+    def display_times_up(self):
+        """
+        Display a "Times Up" message.
+        """
+        self.times_up_label.config(text="Times Up!")
+
+    def display_word_count(self):
+        """
+        Display the number of words typed.
+        """
+        words = len(self.textbox.get("1.0", "end").split())
+        self.word_count_label.config(text=f"Word count: {words}")
+
+    def clear_textbox(self):
+        """
+        Clear input textbox.
+        """
+        self.textbox.delete("1.0", "end")

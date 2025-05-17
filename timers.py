@@ -1,0 +1,75 @@
+from tkinter import Tk
+from config import SESSION_DURATION, CLEARING_DURATION
+
+
+class SessionTimer:
+    """
+    Class to manage the overall writing session timer.
+    """
+
+    def __init__(
+        self,
+        root: Tk,
+        update_session_timer_callback,
+        disable_textbox_callback,
+        times_up_callback,
+    ):
+        self.root = root
+        self.after_id = None
+        self.duration = SESSION_DURATION
+        self.update_session_timer_callback = update_session_timer_callback
+        self.disable_textbox_callback = disable_textbox_callback
+        self.times_up_callback = times_up_callback
+
+    def tick(self):
+        if self.duration < 0:
+            self.root.after_cancel(self.after_id)
+            self.disable_textbox_callback()
+            self.times_up_callback()
+
+        else:
+            self.minutes = self.duration // 60
+            self.seconds = self.duration % 60
+            self.update_session_timer_callback(self.minutes, self.seconds)
+            self.duration -= 1
+            self.after_id = self.root.after(1000, self.tick)
+
+    def start(self):
+        self.tick()
+
+
+class ClearingTimer:
+    """
+    Class to manage the clearing timer.
+    """
+
+    def __init__(
+        self, root: Tk, update_clearing_timer_callback, clearing_textbox_callback, display_word_count_callback
+    ):
+        self.root = root
+        self.after_id = None
+        self.duration = CLEARING_DURATION
+        self.update_clearing_timer_callback = update_clearing_timer_callback
+        self.clearing_textbox_callback = clearing_textbox_callback
+        self.display_word_count_callback = display_word_count_callback
+
+    def tick(self):
+
+        self.display_word_count_callback()
+
+        if self.duration < 0:
+            self.clearing_textbox_callback()
+            self.root.after_cancel(self.after_id)
+
+        else:
+            self.minutes = self.duration // 60
+            self.seconds = self.duration % 60
+            self.update_clearing_timer_callback(self.minutes, self.seconds)
+            self.duration -= 1
+            self.after_id = self.root.after(1000, self.tick)
+
+    def start(self, _event=None):
+        self.duration = CLEARING_DURATION
+        if self.after_id:
+            self.root.after_cancel(self.after_id)
+        self.tick()
