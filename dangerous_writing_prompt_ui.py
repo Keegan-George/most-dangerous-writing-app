@@ -1,5 +1,5 @@
-from tkinter import *
 from config import *
+from tkinter import *
 
 
 class DangerousWritingPromptUI:
@@ -19,7 +19,7 @@ class DangerousWritingPromptUI:
             font=FONT,
             borderwidth=0,
             bg=TEXTBOX_COLOUR,
-            fg=TEXT_COLOUR,
+            fg=FONT_COLOUR,
         )
         self.textbox.grid(row=1, column=0, columnspan=2)
         self.textbox.focus()
@@ -36,7 +36,7 @@ class DangerousWritingPromptUI:
         )
         self.clearing_timer_label.grid(row=0, column=0)
 
-        # time up message
+        # times up message
         self.times_up_label = Label(font=FONT, bg=WINDOW_COLOUR, fg=LABEL_COLOUR)
         self.times_up_label.grid(row=2, column=0, columnspan=2)
 
@@ -70,11 +70,11 @@ class DangerousWritingPromptUI:
 
     def display_times_up(self):
         """
-        Display a "Times Up" message.
+        Display "Times Up" message.
         """
         self.times_up_label.config(text="Times Up!")
 
-    def display_word_count(self):
+    def update_word_count(self):
         """
         Display the number of words typed.
         """

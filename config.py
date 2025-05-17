@@ -4,7 +4,7 @@ PADX = 20
 PADY = 10
 FONT = ("Arial", 12, "bold")
 
-# durations in seconds
+# timer durations in seconds
 SESSION_DURATION = 20
 CLEARING_DURATION = 5
 
@@ -12,4 +12,4 @@ CLEARING_DURATION = 5
 TEXTBOX_COLOUR = "#222831"
 WINDOW_COLOUR = "#393E46"
 LABEL_COLOUR = "#00ADB5"
-TEXT_COLOUR = "#EEEEEE"
+FONT_COLOUR = "#EEEEEE"

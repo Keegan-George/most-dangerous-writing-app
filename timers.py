@@ -4,7 +4,7 @@ from config import SESSION_DURATION, CLEARING_DURATION
 
 class SessionTimer:
     """
-    Class to manage the overall writing session timer.
+    Class to manage the main session timer.
     """
 
     def __init__(
@@ -35,6 +35,9 @@ class SessionTimer:
             self.after_id = self.root.after(1000, self.tick)
 
     def start(self):
+        """
+        Start timer. 
+        """
         self.tick()
 
 
@@ -44,18 +47,21 @@ class ClearingTimer:
     """
 
     def __init__(
-        self, root: Tk, update_clearing_timer_callback, clearing_textbox_callback, display_word_count_callback
+        self,
+        root: Tk,
+        update_clearing_timer_callback,
+        clearing_textbox_callback,
+        update_word_count_callback,
     ):
         self.root = root
         self.after_id = None
         self.duration = CLEARING_DURATION
         self.update_clearing_timer_callback = update_clearing_timer_callback
         self.clearing_textbox_callback = clearing_textbox_callback
-        self.display_word_count_callback = display_word_count_callback
+        self.update_word_count_callback = update_word_count_callback
 
     def tick(self):
-
-        self.display_word_count_callback()
+        self.update_word_count_callback()
 
         if self.duration < 0:
             self.clearing_textbox_callback()
@@ -69,6 +75,9 @@ class ClearingTimer:
             self.after_id = self.root.after(1000, self.tick)
 
     def start(self, _event=None):
+        """
+        Start timer. Cancels an existing timer if one is running. 
+        """
         self.duration = CLEARING_DURATION
         if self.after_id:
             self.root.after_cancel(self.after_id)
