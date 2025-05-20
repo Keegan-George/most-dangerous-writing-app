@@ -2,7 +2,7 @@ from config import *
 from tkinter import *
 
 
-class DangerousWritingPromptUI:
+class DangerousWritingAppUI:
     """
     Class to create and update the Dangerous Writing Prompt UI
     """

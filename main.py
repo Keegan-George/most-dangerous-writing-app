@@ -1,10 +1,10 @@
 from tkinter import Tk
 from timers import SessionTimer, ClearingTimer
-from dangerous_writing_prompt_ui import DangerousWritingPromptUI
+from dangerous_writing_app_ui import DangerousWritingAppUI
 
 
 window = Tk()
-ui = DangerousWritingPromptUI(window)
+ui = DangerousWritingAppUI(window)
 session_timer = SessionTimer(window, ui.update_timer_display, ui.disable_text_box, ui.display_times_up)
 clearing_timer = ClearingTimer(window, ui.update_timer_display, ui.clear_textbox, session_timer)
 
