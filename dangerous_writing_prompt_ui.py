@@ -14,7 +14,7 @@ class DangerousWritingPromptUI:
         self.root.geometry(WINDOW_RESOLUTION)
 
         # textbox
-        self.textbox = Text(width=65)
+        self.textbox = Text(width=TEXTBOX_WIDTH)
         self.textbox.configure(
             font=FONT,
             borderwidth=0,
@@ -48,9 +48,9 @@ class DangerousWritingPromptUI:
 
     def update_timer_display(self, timer_type: str, minutes: int, seconds: int):
         """
-        Update the selected timer with the given time in minutes and seconds.
+        Update the selected timer with the provided time in minutes:seconds.
 
-        Set timer_type to 's' or 'c' to display for the "session" or "clearing" timer accordingly.
+        Set timer_type to 's' or 'c' to update the display for the "session" or "clearing" timer accordingly.
 
         """
         if not timer_type in ("s", "c"):

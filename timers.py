@@ -13,10 +13,11 @@ class BaseTimer:
         self.after_id = None
         self.duration = None
         self.timer_type = None
+        self.is_on = False
 
     def tick(self):
         """
-        Decrement the current time by 1 second on each call. 
+        Decrement the current time by 1 second on each call.
         """
         if self.duration < 0:
             self.stop()
@@ -31,10 +32,18 @@ class BaseTimer:
             self.after_id = self.root.after(1000, self.tick)
 
     def start(self):
+        """
+        Start the timer.
+        """
         self.tick()
+        self.is_on = True
 
     def stop(self):
+        """
+        Stop the timer. 
+        """
         self.root.after_cancel(self.after_id)
+        self.is_on = False
 
 
 class SessionTimer(BaseTimer):
@@ -59,7 +68,6 @@ class SessionTimer(BaseTimer):
         if self.duration < 0:
             self.disable_textbox_callback()
             self.times_up_callback()
-
         super().tick()
 
 
@@ -73,17 +81,23 @@ class ClearingTimer(BaseTimer):
         root: Tk,
         update_timer_display_callback,
         clearing_textbox_callback,
+        session_timer_callback: SessionTimer,
     ):
         super().__init__(root, update_timer_display_callback)
         self.clearing_textbox_callback = clearing_textbox_callback
+        self.session_timer_callback = session_timer_callback
         self.timer_type = "c"
 
     def tick(self):
         if self.duration < 0:
             self.clearing_textbox_callback()
 
-        super().tick()
+        if not self.session_timer_callback.is_on:
+            self.stop()
+            self.root.unbind("<Key>")
 
+        else:
+            super().tick()
 
     def start(self, _event=None):
         """

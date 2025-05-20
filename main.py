@@ -5,10 +5,8 @@ from dangerous_writing_prompt_ui import DangerousWritingPromptUI
 
 window = Tk()
 ui = DangerousWritingPromptUI(window)
-session_timer = SessionTimer(
-    window, ui.update_timer_display, ui.disable_text_box, ui.display_times_up
-)
-clearing_timer = ClearingTimer(window, ui.update_timer_display, ui.clear_textbox)
+session_timer = SessionTimer(window, ui.update_timer_display, ui.disable_text_box, ui.display_times_up)
+clearing_timer = ClearingTimer(window, ui.update_timer_display, ui.clear_textbox, session_timer)
 
 
 def start_timers(_event=None):
@@ -20,6 +18,5 @@ def start_timers(_event=None):
 
 
 window.bind("<Key>", start_timers)
-
 
 window.mainloop()
