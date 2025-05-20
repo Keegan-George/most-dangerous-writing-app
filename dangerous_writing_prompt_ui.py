@@ -46,21 +46,24 @@ class DangerousWritingPromptUI:
         )
         self.word_count_label.grid(row=3, column=0, columnspan=2)
 
-    def update_session_timer(self, minutes: int, seconds: int):
+    def update_timer_display(self, timer_type: str, minutes: int, seconds: int):
         """
-        Update the session timer display.
-        """
-        self.session_timer_label.config(
-            text=f"Session timer: {minutes:02d}:{seconds:02d}"
-        )
+        Update the selected timer with the given time in minutes and seconds.
 
-    def update_clearing_timer(self, minutes: int, seconds: int):
+        Set timer_type to 's' or 'c' to display for the "session" or "clearing" timer accordingly.
+
         """
-        Update the clearing timer display.
-        """
-        self.clearing_timer_label.config(
-            text=f"Clearing timer: {minutes:02d}:{seconds:02d}"
-        )
+        if not timer_type in ("s", "c"):
+            raise ValueError
+
+        if timer_type == "s":
+            self.session_timer_label.config(
+                text=f"Session timer: {minutes:02d}:{seconds:02d}"
+            )
+        if timer_type == "c":
+            self.clearing_timer_label.config(
+                text=f"Clearing timer: {minutes:02d}:{seconds:02d}"
+            )
 
     def disable_text_box(self):
         """
